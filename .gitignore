@@ -1,0 +1,42 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/Uitleenapp/dist
+/Uitleenapp/tmp
+/Uitleenapp/out-tsc
+
+# dependencies
+/Uitleenapp/node_modules
+
+# IDEs and editors
+/Uitleenapp/.idea
+/Uitleenapp/.project
+/Uitleenapp/.classpath
+/Uitleenapp/.c9/
+/Uitleenapp/*.launch
+/Uitleenapp/.settings/
+/Uitleenapp/*.sublime-workspace
+
+# IDE - VSCode
+/Uitleenapp/.vscode/*
+/Uitleenapp/!.vscode/settings.json
+/Uitleenapp/!.vscode/tasks.json
+/Uitleenapp/!.vscode/launch.json
+/Uitleenapp/!.vscode/extensions.json
+
+# misc
+/Uitleenapp/.sass-cache
+/Uitleenapp/connect.lock
+/Uitleenapp/coverage
+/Uitleenapp/libpeerconnection.log
+/Uitleenapp/npm-debug.log
+/Uitleenapp/testem.log
+/Uitleenapp/typings
+
+# e2e
+/Uitleenapp/e2e/*.js
+/Uitleenapp/e2e/*.map
+
+# System Files
+/Uitleenapp/.DS_Store
+/Uitleenapp/Thumbs.db
