@@ -1,6 +1,2 @@
 hier komt de documentatie.
-<<<<<<< HEAD
 test voor developer
-=======
-test
->>>>>>> feature-branch-lucas
