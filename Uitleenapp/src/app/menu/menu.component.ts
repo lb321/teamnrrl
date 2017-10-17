@@ -13,10 +13,13 @@ export class MenuComponent {
   }
 
   private showStudentMenu(): boolean {
+    //if(this.authService.getLoggedInUser() != null) console.log(this.authService.getLoggedInUser().rol.valueOf() + ", " + rollen.Student.valueOf());
     return this.authService.getLoggedInUser() != null && this.authService.getLoggedInUser().rol.toLocaleString() == rollen[1];
   }
 
   private showBeheerderMenu(): boolean {
+    //if(this.authService.getLoggedInUser() != null) console.log(this.authService.getLoggedInUser().rol.valueOf() + ", " + rollen.Beheerder.valueOf());
     return this.authService.getLoggedInUser() != null && this.authService.getLoggedInUser().rol.toLocaleString() == rollen[0];
+    //    return this.authService.getLoggedInUser() != null && this.authService.getLoggedInUser().rol.toLocaleString() == rollen[0];
   }
 }

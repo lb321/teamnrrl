@@ -4,5 +4,5 @@
   </div>
   <h2>Inlognaam:</h2><jqxInput [(ngModel)]="loginnaam" type="text" [theme]="themeproviderService.selectedTheme"></jqxInput>
   <h2>Wachtwoord:</h2><jqxPasswordInput [(ngModel)]="wachtwoord" type="text" [theme]="themeproviderService.selectedTheme"></jqxPasswordInput>
-  <jqxButton (click)="this.login()" href="/ingelogd" [theme]="themeproviderService.selectedTheme" >Login</jqxButton>
+  <jqxButton (click)="this.login()" routerLink="/home" [theme]="themeproviderService.selectedTheme" >Login</jqxButton>
 </div>

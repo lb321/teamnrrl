@@ -20,6 +20,8 @@ import { jqxPanelComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqx
 import { jqxMenuComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxmenu';
 import {ThemeproviderService} from './theme/themeprovider.service';
 import {MenuComponent} from "./menu/menu.component";
+import {HomeComponent} from "./home/home.component";
+import {ProductenComponent} from "./producten/producten.component";
 
 
 export const firebaseConfig = {
@@ -33,7 +35,9 @@ export const firebaseConfig = {
 
 const appRoutes: Routes = [
   { path: 'loguit', component: LoginComponent},
-  { path: 'ingelogd', component: IngelogdComponent}
+  { path: 'ingelogd', component: IngelogdComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'producten', component: ProductenComponent, canActivate: [AuthguardService]}
 ];
 
 @NgModule({
@@ -41,6 +45,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     IngelogdComponent,
+    ProductenComponent,
+    HomeComponent,
     jqxButtonComponent,
     jqxInputComponent,
     jqxPasswordInputComponent,

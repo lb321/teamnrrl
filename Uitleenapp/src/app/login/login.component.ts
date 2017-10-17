@@ -16,7 +16,17 @@ export class LoginComponent {
   }
 
   private login() {
-    this.authenticationservice.loginToApp(this.loginnaam, this.wachtwoord);
-    if(!this.authenticationservice.isLoggedIn()) { this.foutmelding = 'Ongeldige logingegevens'; console.log('ongeldig')}
+   /* this.authenticationservice.loginToApp(this.loginnaam, this.wachtwoord).catch( (err) => {
+      s
+    });*/
+   this.authenticationservice.loginToApp(this.loginnaam, this.wachtwoord, (error) => {
+     switch (error) {
+       case 'auth/invalid-email' : this.foutmelding = 'Deze gebruiker heeft geen geldig email adress.'; break;
+       case 'auth/wrong-password' : this.foutmelding = 'Fout wachtwoord'; break;
+       case 'auth/user-not-found' : this.foutmelding = 'Verkeerde inloggegevens'; break;
+       default: this.foutmelding = error; break;
+     }
+   });
+    //if(!this.authenticationservice.isLoggedIn()) { this.foutmelding = 'Ongeldige logingegevens'; console.log('ongeldig')}
   }
 }

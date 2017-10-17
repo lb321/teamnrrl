@@ -7,63 +7,57 @@ import {rollen} from './rollen.enum';
 
 @Injectable()
 export class AuthenticationService {
-  private users: UserDto[] = [];
   private loggedInUser: UserDto = null;
 
   constructor(private firebaseAuth: AngularFireAuth, public afDatabase: AngularFireDatabase) {
-    this.firebaseAuth.auth.signInAnonymously();
-    afDatabase.list('/users').forEach((item) => {
-      this.users.push(new UserDto(item[0]['voornaam'], item[0]['achternaam'], item[0]['inlognaam'], item[0]['wachtwoord'], item[0]['email'], item[0]['rol']));
-    });
-
-    /*this.firebaseAuth.authState.subscribe(
+    this.firebaseAuth.auth.setPersistence('local'); //wanneer pagina word gesloten word nog onthouden of ingelogd of niet
+    this.firebaseAuth.authState.subscribe(
       (auth) => {
         if (auth == null) {
-          this.user = null;
-          this.loggedIn = false;
+          this.loggedInUser = null;
         } else {
-          console.log(auth);
-          this.loginToApp(this.username, this.password);
-          //this.username = auth.displayName;
-          //this.newUser(new UserDto('Lucas', 'Bos', 'LBos', 'LBos321', 'lucas.bos@student.hu.nl', rollen.Beheerder));
-          //this.userExists("Lucas");
+          const user = this.afDatabase.database.ref('/users/' + auth.displayName);
+          user.once('value').then(snapshot => {
+            const usr = snapshot.val();
+            this.loggedInUser = new UserDto(usr.voornaam, usr.achternaam, usr.inlognaam, usr.wachtwoord, usr.email, usr.rol);
+          });
+          //this.newUser(new UserDto('Stu', 'dent', 'Student', 'Student', 'student@hu.nl', rollen.Student));
         }
       }
-    );*/
+    );
   }
 
   newUser(user: UserDto) {
-    /*this.items.push({
+    this.afDatabase.list("/usernames").push({
+      'email': user.email
+    }); //handmatig in /usernames het id in de username veranderen en het id van de user toevoegen
+    this.afDatabase.list("/users").push({
       'voornaam': user.voornaam,
       'achternaam': user.achternaam,
       'inlognaam': user.inlognaam,
       'wachtwoord': user.wachtwoord,
       'email': user.email,
       'rol': rollen[user.rol]
-      });*/
+      });
+    this.firebaseAuth.auth.createUserWithEmailAndPassword(user.email, user.wachtwoord);
   }
 
-  getUser(inlognaam: string, wachtwoord: string): UserDto {
-    /*this.items.forEach(item => {
-      console.log(item[0]['inlognaam'] + ', ' + inlognaam + ', ' + wachtwoord + ', ' + item[0]['wachtwoord']);
-      if (item[0]['inlognaam'].valueOf() == inlognaam.valueOf() && item[0]['wachtwoord'].valueOf() == wachtwoord.valueOf()) {
-        console.log('set user');
-        user = new UserDto(item[0]['voornaam'], item[0]['achternaam'], inlognaam, wachtwoord, item[0]['email'], item[0]['rol']);
-        return;
+  loginToApp(loginnaam: string, wachtwoord: string, displayErrorFunction: (error: string) => void): void {
+    const username = this.afDatabase.database.ref('/usernames/' + loginnaam);
+    let uname = '';
+    username.once('value').then(snapshot => {
+      const usr = snapshot.val();
+      if (usr != null) {
+        uname = usr.email;
+        let error: boolean = false;
+        this.firebaseAuth.auth.signInWithEmailAndPassword(uname, wachtwoord).catch(reason => {
+          displayErrorFunction(reason.code); error = true;
+        }).then( () => {
+          if(!error) this.firebaseAuth.auth.currentUser.updateProfile({displayName: usr.id, photoURL: ''});
+        });
       }
-
-    });*/
-    for (const user of this.users){
-      if (user.inlognaam == inlognaam && user.wachtwoord == wachtwoord) {
-        return user;
-      }
-    }
-    return null;
-  }
-
-  loginToApp(loginnaam: string, wachtwoord: string) {
-    const user: UserDto = this.getUser(loginnaam, wachtwoord);
-    this.loggedInUser = user;
+      else displayErrorFunction("Verkeerde username");
+    });
   }
 
   public isLoggedIn(): boolean {
@@ -75,7 +69,7 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    this.loggedInUser = null;
+    this.firebaseAuth.auth.signOut();
   }
 
 }
