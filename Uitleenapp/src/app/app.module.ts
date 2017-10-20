@@ -8,7 +8,7 @@ import {AuthenticationService} from './authentication/authentication.service';
 import {LoginComponent} from './login/login.component';
 import {RouterModule, Routes} from '@angular/router';
 import {IngelogdComponent} from './ingelogd/ingelogd.component';
-import {AuthguardService} from './authentication/authguard.service';
+import {AuthguardService} from './authentication/authgaurds/authguard.service';
 import {AngularFireDatabaseModule} from 'angularfire2/database-deprecated';
 import {FormsModule} from '@angular/forms';
 import { jqxButtonComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxbuttons';
@@ -23,6 +23,8 @@ import {MenuComponent} from "./menu/menu.component";
 import {HomeComponent} from "./home/home.component";
 import {ProductenComponent} from "./product/producten/producten.component";
 import {ProductService} from "./product/product.service";
+import {LeningService} from "./lening/lening.service";
+import {LeningIndienenComponent} from "./lening/leningindienen/leningIndienen.component";
 
 
 export const firebaseConfig = {
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
   { path: 'loguit', component: LoginComponent},
   { path: 'ingelogd', component: IngelogdComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'producten', component: ProductenComponent, canActivate: [AuthguardService]}
+  { path: 'producten', component: ProductenComponent, canActivate: [AuthguardService]},
+  { path: 'leningen/indienen', component: LeningIndienenComponent, canActivate: [AuthguardService]}
 ];
 
 @NgModule({
@@ -48,6 +51,7 @@ const appRoutes: Routes = [
     IngelogdComponent,
     ProductenComponent,
     HomeComponent,
+    LeningIndienenComponent,
     jqxButtonComponent,
     jqxInputComponent,
     jqxPasswordInputComponent,
@@ -69,7 +73,8 @@ const appRoutes: Routes = [
     AuthenticationService,
     AuthguardService,
     ThemeproviderService,
-    ProductService
+    ProductService,
+    LeningService
   ],
   bootstrap: [AppComponent]
 })
