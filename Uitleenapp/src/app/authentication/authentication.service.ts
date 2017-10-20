@@ -22,6 +22,7 @@ export class AuthenticationService {
             this.loggedInUser = new UserDto(usr.voornaam, usr.achternaam, usr.inlognaam, usr.wachtwoord, usr.email, usr.rol);
           });
           //this.newUser(new UserDto('Stu', 'dent', 'Student', 'Student', 'student@hu.nl', rollen.Student));
+          //this.firebaseAuth.auth.sendPasswordResetEmail("lucas.bos@student.hu.nl");
         }
       }
     );

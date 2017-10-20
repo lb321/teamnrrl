@@ -21,7 +21,8 @@ import { jqxMenuComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxm
 import {ThemeproviderService} from './theme/themeprovider.service';
 import {MenuComponent} from "./menu/menu.component";
 import {HomeComponent} from "./home/home.component";
-import {ProductenComponent} from "./producten/producten.component";
+import {ProductenComponent} from "./product/producten/producten.component";
+import {ProductService} from "./product/product.service";
 
 
 export const firebaseConfig = {
@@ -67,7 +68,8 @@ const appRoutes: Routes = [
   providers: [
     AuthenticationService,
     AuthguardService,
-    ThemeproviderService
+    ThemeproviderService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
