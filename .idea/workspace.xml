@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b409241-6154-437c-9ec3-4d639311068d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/authentication/authentication.service.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/authentication/authgaurds/authguard.service.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/authentication/authgaurds/studentAuthguard.service.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/authentication/rollen.enum.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/authentication/user.dto.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/home/home.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/home/home.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/ingelogd/ingelogd.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/ingelogd/ingelogd.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/lening/lening.service.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/lening/leningindienen/leningIndienen.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/lening/leningindienen/leningIndienen.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/login/login.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/login/login.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/menu/menu.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/menu/menu.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/product/product.dto.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/product/product.service.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/product/producten/producten.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/product/producten/producten.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/product/productstatus.enum.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/theme/themeprovider.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Documentatie/text.txt" afterPath="$PROJECT_DIR$/Documentatie/text.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/.angular-cli.json" afterPath="$PROJECT_DIR$/Uitleenapp/.angular-cli.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/package.json" afterPath="$PROJECT_DIR$/Uitleenapp/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/src/app/app.component.html" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/app.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/src/app/app.component.ts" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/app.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/src/app/app.module.ts" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/src/styles.css" afterPath="$PROJECT_DIR$/Uitleenapp/src/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/tslint.json" afterPath="$PROJECT_DIR$/Uitleenapp/tslint.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.ts" afterPath="$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="productToevoegen.component.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="productToevoegen.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="22" column="59" lean-forward="false" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+              <caret line="22" column="60" lean-forward="true" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -74,17 +44,17 @@
         <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/menu/menu.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="21" column="71" lean-forward="true" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
+              <caret line="21" column="71" lean-forward="false" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product.service.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="product.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/product.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
-              <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+              <caret line="26" column="44" lean-forward="false" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -94,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/product.dto.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,11 +97,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.html" />
-        <option value="$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.ts" />
         <option value="$PROJECT_DIR$/Uitleenapp/src/app/product/product.dto.ts" />
         <option value="$PROJECT_DIR$/Uitleenapp/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/Uitleenapp/src/app/menu/menu.component.html" />
         <option value="$PROJECT_DIR$/Uitleenapp/src/app/product/product.service.ts" />
+        <option value="$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.ts" />
       </list>
     </option>
   </component>
@@ -253,15 +223,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1508500138440</updated>
-      <workItem from="1508500139658" duration="6345000" />
+      <workItem from="1508500139658" duration="6750000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6345000" />
+    <option name="totallyTimeSpent" value="6750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09325606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -270,7 +241,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -325,24 +296,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/product.dto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="59" lean-forward="false" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -356,7 +309,7 @@
     <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/menu/menu.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="21" column="71" lean-forward="true" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
+          <caret line="21" column="71" lean-forward="false" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
           <folding />
         </state>
       </provider>
@@ -364,8 +317,26 @@
     <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/product.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
-          <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+          <caret line="26" column="44" lean-forward="false" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/product.dto.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Uitleenapp/src/app/product/productToevoegen/productToevoegen.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="60" lean-forward="true" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

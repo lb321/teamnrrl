@@ -18,9 +18,9 @@ export class ProductToevoegenComponent {
   }
 
   private toevoegen(){
-    for (var _i = 0; _i < this.aantal; _i++) {
-      this.nieuwproduct = new ProductDto(this.productnaam, this.beschrijving, ProductStatus.Beschikbaar);
-      this.productService.voegProductToe(this.nieuwproduct)
+    this.nieuwproduct = new ProductDto(this.productnaam, this.beschrijving, ProductStatus.Beschikbaar);
+    for (let _i = 0; _i < this.aantal; _i++) {
+      this.productService.voegProductToe(this.nieuwproduct);
     }
   }
 }
