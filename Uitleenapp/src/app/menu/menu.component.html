@@ -1,0 +1,27 @@
+<jqxMenu *ngIf="!this.authService.isLoggedIn()" [theme]="themeprovider.selectedTheme">
+  <ul>
+    <li routerLink="/home"><a>Home</a></li>
+  </ul>
+</jqxMenu>
+<jqxMenu [theme]="themeprovider.selectedTheme" *ngIf="this.showStudentMenu()">
+  <ul>
+    <li routerLink="/home"><a>Home</a></li>
+    <li><a>Mijn Leningen</a></li>
+    <li><a>Lening Indienen</a></li>
+    <li routerLink="/producten"><a>Producten</a></li>
+    <div style="float: right">
+      <li><a (click)="authService.logout()">Uitloggen</a></li>
+    </div>
+  </ul>
+</jqxMenu>
+<jqxMenu [theme]="themeprovider.selectedTheme" *ngIf="this.showBeheerderMenu()">
+  <ul>
+    <li routerLink="/home"><a>Home</a></li>
+    <li><a>Leningen</a></li>
+    <li routerLink="/producten"><a>Producten</a></li>
+    <li><a>Product Toevoegen</a></li>
+    <div style="float: right">
+      <li><a (click)="authService.logout()">Uitloggen</a></li>
+    </div>
+  </ul>
+</jqxMenu>
