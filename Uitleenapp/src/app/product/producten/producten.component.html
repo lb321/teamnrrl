@@ -1,4 +1,4 @@
-<div>Hier komen de producten</div>
-<ul>
-  <li *ngFor="let product of producten | async">{{product.productnaam}}</li>
-</ul>
+<h1>Producten:</h1>
+<jqxDataTable #productTable [width]="500" [source]="productAdapter" [sortable]="true" [filterable]="true" [columns]="columns" [theme]="themeProvider.selectedTheme" [pageable]="true"  [altRows]="true" [columnsResize]="true" [pagerButtonsCount]="10">
+</jqxDataTable>
+

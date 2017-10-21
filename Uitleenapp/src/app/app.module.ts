@@ -18,6 +18,8 @@ import { jqxDropDownListComponent } from 'jqwidgets-framework/jqwidgets-ts/angul
 import { jqxDockPanelComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdockpanel';
 import { jqxPanelComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxpanel';
 import { jqxMenuComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxmenu';
+import { jqxDataTableComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable';
+import { jqxValidatorComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxvalidator';
 import {ThemeproviderService} from './theme/themeprovider.service';
 import {MenuComponent} from "./menu/menu.component";
 import {HomeComponent} from "./home/home.component";
@@ -61,6 +63,8 @@ const appRoutes: Routes = [
     jqxMenuComponent,
     jqxDockPanelComponent,
     jqxPanelComponent,
+    jqxDataTableComponent,
+    jqxValidatorComponent,
     MenuComponent,
     ProductToevoegenComponent
   ],

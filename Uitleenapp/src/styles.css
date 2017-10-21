@@ -6,3 +6,8 @@
   border: 1px solid #ebccd1;
   border-radius: 4px;
 }
+
+.active {
+  font-weight: bold;
+  border: 1px solid;
+}
