@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {ProductService} from '../product.service';
-import { jqxDataTableComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable';
 import {ThemeproviderService} from '../../theme/themeprovider.service';
-import {IProductTableInterface} from "../IProductTable.interface";
+import {IProductTableInterface} from '../IProductTable.interface';
 
 @Component({
   selector: 'ProductenComponent',

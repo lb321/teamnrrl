@@ -20,6 +20,7 @@ export class AuthenticationService {
           user.once('value').then(snapshot => {
             const usr = snapshot.val();
             this.loggedInUser = new UserDto(usr.voornaam, usr.achternaam, usr.inlognaam, usr.wachtwoord, usr.email, usr.rol);
+            if(usr.studentnummer) this.loggedInUser.studentnummer = usr.studentnummer;
           });
           //this.newUser(new UserDto('Stu', 'dent', 'Student', 'Student', 'student@hu.nl', rollen.Student));
           //this.firebaseAuth.auth.sendPasswordResetEmail("lucas.bos@student.hu.nl");
@@ -38,7 +39,8 @@ export class AuthenticationService {
       'inlognaam': user.inlognaam,
       'wachtwoord': user.wachtwoord,
       'email': user.email,
-      'rol': rollen[user.rol]
+      'rol': rollen[user.rol],
+      'studentnummer': user.studentnummer
       });
     this.firebaseAuth.auth.createUserWithEmailAndPassword(user.email, user.wachtwoord);
   }

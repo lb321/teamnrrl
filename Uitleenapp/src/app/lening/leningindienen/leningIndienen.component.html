@@ -10,7 +10,7 @@
   </div>
   <div style="display: block;">
     <div style="display: inline-block;">
-      <jqxDataTable #productTable></jqxDataTable>
+      <jqxDataTable #productTable [source]="sourceAdapter" [columns]="columns" [auto-create]="false"></jqxDataTable>
       <jqxButton [theme]="themeProvider.selectedTheme" (onClick)="indienen()" style="float: right; margin-top: 10px;">Indienen</jqxButton>
     </div>
   </div>

@@ -22,6 +22,8 @@ export abstract class IProductTableInterface implements AfterViewInit{
     {text: 'Voorraad', dataField: 'voorraad', editable: false}
   ];
 
+  public sourceAdapter = new jqx.dataAdapter(this.productSource, {autoBind: true});
+
   public options =
     {
       width: 580,
@@ -56,11 +58,11 @@ export abstract class IProductTableInterface implements AfterViewInit{
 
   ngAfterViewInit(): void {
     if(this.productTable) {
-      console.log('set dingen');
-      this.productTable.updateBoundData();
+      /*this.productTable.updateBoundData();
       this.productTable.columns(this.columns);
       this.productTable.source(new jqx.dataAdapter(this.productSource, {autoBind: true}));
-      this.productTable.setOptions(this.options);
+      this.productTable.setOptions(this.options);*/
+      this.productTable.createComponent(this.options);
       this.productTable.refresh();
     }
   }

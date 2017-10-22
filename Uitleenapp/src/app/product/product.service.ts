@@ -2,7 +2,7 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database
 import {Injectable} from '@angular/core';
 import {ProductDto} from './product.dto';
 import {ProductStatus} from './productstatus.enum';
-import {ReplaySubject} from "rxjs/ReplaySubject";
+import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class ProductService {
@@ -19,17 +19,19 @@ export class ProductService {
       this.aantalProducten = 0;
       this.voorraad = {};
       this.producten = [];
-      items.forEach((product, index, array) => {
-        this.producten.push(new ProductDto(product.productnaam, product.productbeschrijving, product.productstatus));
+      items.forEach((item, index, array) => {
+        let product = new ProductDto(item.productnaam, item.productbeschrijving, item.productstatus);
+        product.productId = item.productid;
+        this.producten.push(product);
         this.aantalProducten += 1;
-        if (product.productstatus == ProductStatus[ProductStatus.Beschikbaar]) {
+        if (ProductStatus.equals(product.productstatus, ProductStatus.Beschikbaar)) {
           if (this.voorraad[product.productnaam]) {
             this.voorraad[product.productnaam].voorraad += 1;
           } else {
             this.voorraad[product.productnaam] = {'productnaam': product.productnaam, 'productbeschrijving': product.productbeschrijving, 'voorraad': 1};
           }
         }
-        if(index + 1 == array.length){ //er is door elk element heen geloopt, roep de subscribers aan.
+        if(index + 1 == array.length){ //er is door elk element heen geloopt, zend de nieuwe lijsten naar de subscribers.
           this.productListObservable.next(this.producten);
           this.voorraadObservable.next(this.voorraad);
         }
@@ -37,24 +39,44 @@ export class ProductService {
     });
   }
 
-  getAlleProducten(): ProductDto[] {
-    return this.producten;
-  }
-
-  getVoorraadLijst() {
-    return this.voorraad;
-  }
-
   voegProductToe(product: ProductDto) {
     this.productlist.push({
       'productid': this.aantalProducten + 1,
       'productbeschrijving': product.productbeschrijving,
       'productnaam': product.productnaam,
-      'productstatus': ProductStatus[product.productstatus.valueOf()]
+      'productstatus': ProductStatus.getStringValue(product.productstatus)
     });
   }
 
-  getProductObservable() {
+  setProductStatus(productId: number, status: ProductStatus) {
+    this.productlist.forEach(producten => {
+      producten.forEach(product => {
+        if(product.productid == productId) {
+          this.afDatabase.database.ref('/producten/' + product.$key).update({
+            'productstatus': ProductStatus.getStringValue(status)
+          });
+        }
+      });
+    });
+  }
+
+  getProductenByName(productnaam: string): ProductDto[] {
+    let productenMetNaam: ProductDto[] = [];
+    for(const product of this.producten){
+      if(product.productnaam == productnaam) productenMetNaam.push(product);
+    }
+    return productenMetNaam;
+  }
+
+  getProductenByNameAndStatus(productnaam: string, productstatus: ProductStatus) {
+    let productenMetNaamEnStatus: ProductDto[] = [];
+    for(const product of this.producten){
+      if(product.productnaam == productnaam && ProductStatus.equals(product.productstatus, productstatus)) productenMetNaamEnStatus.push(product);
+    }
+    return productenMetNaamEnStatus;
+  }
+
+  getProductListObservable() {
     return this.productListObservable;
   }
 

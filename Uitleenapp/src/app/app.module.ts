@@ -28,6 +28,7 @@ import {ProductService} from "./product/product.service";
 import {LeningService} from "./lening/lening.service";
 import {LeningIndienenComponent} from "./lening/leningindienen/leningIndienen.component";
 import {ProductToevoegenComponent} from "./product/productToevoegen/productToevoegen.component";
+import {LeningenComponent} from "./lening/leningen/leningen.component";
 
 
 export const firebaseConfig = {
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'producten', component: ProductenComponent, canActivate: [AuthguardService]},
   { path: 'leningen/indienen', component: LeningIndienenComponent, canActivate: [AuthguardService]},
-  { path: 'producten/toevoegen', component: ProductToevoegenComponent}
+  { path: 'producten/toevoegen', component: ProductToevoegenComponent, canActivate: [AuthguardService]},
+  { path: 'leningen', component: LeningenComponent, canActivate: [AuthguardService]}
 ];
 
 @NgModule({
@@ -56,6 +58,7 @@ const appRoutes: Routes = [
     ProductenComponent,
     HomeComponent,
     LeningIndienenComponent,
+    LeningenComponent,
     jqxButtonComponent,
     jqxInputComponent,
     jqxPasswordInputComponent,
