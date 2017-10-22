@@ -1,6 +1,9 @@
 <div>
-  <h2>Productnaam:</h2><jqxInput [(ngModel)]="productnaam" type="text" [theme]="themeproviderService.selectedTheme"></jqxInput>
-  <h2>Beschrijving:</h2><jqxInput [(ngModel)]="beschrijving" type="text" [theme]="themeproviderService.selectedTheme"></jqxInput>
-  <h2>Aantal:</h2><jqxInput [(ngModel)]="aantal" type="number" [theme]="themeproviderService.selectedTheme"></jqxInput>
-  <jqxButton (click)="this.toevoegen()" routerLink="/producten" [theme]="themeproviderService.selectedTheme" >Toevoegen</jqxButton>
+  <div *ngIf="this.errormessage.length > 0" class="alert-danger" style="display: inline-block;">
+    {{this.errormessage}}
+  </div>
+  <h2>Productnaam:</h2><jqxInput [(ngModel)]="productnaam" type="text" [theme]="themeproviderService.selectedTheme" minlength="1"></jqxInput>
+  <h2>Beschrijving:</h2><jqxInput [(ngModel)]="beschrijving" type="text" [theme]="themeproviderService.selectedTheme" minlength="1"></jqxInput>
+  <h2>Aantal:</h2><jqxInput [(ngModel)]="aantal" type="number" [theme]="themeproviderService.selectedTheme" minlength="1"></jqxInput>
+  <jqxButton (click)="this.toevoegen()" [theme]="themeproviderService.selectedTheme" >Toevoegen</jqxButton>
 </div>

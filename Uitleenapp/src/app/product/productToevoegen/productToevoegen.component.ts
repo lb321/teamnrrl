@@ -3,6 +3,7 @@ import {ThemeproviderService} from "../../theme/themeprovider.service";
 import {ProductDto} from "../product.dto";
 import {ProductService} from "../product.service";
 import {ProductStatus} from "../productstatus.enum";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ProductToevoegenComponent',
@@ -13,14 +14,29 @@ export class ProductToevoegenComponent {
   public productnaam = "";
   public beschrijving = "";
   public aantal = 0;
+  public errormessage = "";
 
-  constructor(public themeproviderService: ThemeproviderService, public productService: ProductService){
+  constructor(public themeproviderService: ThemeproviderService, public productService: ProductService, public router: Router) {
   }
 
-  private toevoegen(){
-    this.nieuwproduct = new ProductDto(this.productnaam, this.beschrijving, ProductStatus.Beschikbaar);
-    for (let _i = 0; _i < this.aantal; _i++) {
-      this.productService.voegProductToe(this.nieuwproduct);
+  private toevoegen() {
+    if (this.check()) {
+      this.nieuwproduct = new ProductDto(this.productnaam, this.beschrijving, ProductStatus.Beschikbaar);
+      for (let _i = 0; _i < this.aantal; _i++) {
+        this.productService.voegProductToe(this.nieuwproduct);
+      }
+      this.router.navigateByUrl("/producten");
+    }
+  }
+
+  private check(): boolean {
+    this.errormessage = "";
+    if (this.productnaam.length < 1 || this.beschrijving.length < 1 || this.aantal == 0) {
+      this.errormessage = "Vul alle velden in";
+      return false;
+    }
+    else {
+      return true;
     }
   }
 }
