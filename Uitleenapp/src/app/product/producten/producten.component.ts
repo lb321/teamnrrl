@@ -9,6 +9,7 @@ import {IProductTableInterface} from '../IProductTable.interface';
 })
 export class ProductenComponent extends IProductTableInterface {
    constructor(public productService: ProductService, public themeProvider: ThemeproviderService) {
-     super(productService, themeProvider);
+     super();
+     super.setVoorraadData(this.productService);
   }
 }

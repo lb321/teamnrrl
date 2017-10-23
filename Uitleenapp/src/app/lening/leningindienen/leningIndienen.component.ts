@@ -20,7 +20,8 @@ export class LeningIndienenComponent extends IProductTableInterface {
   public foutmeldingen: string[] = [];
 
   constructor(public productService: ProductService, public themeProvider: ThemeproviderService, public leningService: LeningService, public authService: AuthenticationService, public router: Router) {
-    super(productService, themeProvider);
+    super();
+    super.setVoorraadData(this.productService);
     this.productSource.dataFields.push({name: 'aantal', type: 'number'});
     this.columns.push({
         text: 'Aantal', dataField: 'aantal', editable: true,

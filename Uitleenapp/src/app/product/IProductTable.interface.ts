@@ -9,17 +9,19 @@ export abstract class IProductTableInterface implements AfterViewInit{
   public productSource =  {
     dataType: 'array',
     dataFields: [
+      {name: 'productId', type: 'number'},
       {name: 'productnaam', type: 'string'},
       {name: 'productbeschrijving', type: 'string'},
-      {name: 'voorraad', type: 'number'}
+      {name: 'productstatus', type: 'string'}
       ],
     localData: []
   };
 
   public columns: DataTableColumns[] = [
+    {text: 'ProductID', dataField: 'productId', editable: false},
     {text: 'Product naam', dataField: 'productnaam', editable: false},
     {text: 'Product beschrijving', dataField: 'productbeschrijving', editable: false},
-    {text: 'Voorraad', dataField: 'voorraad', editable: false}
+    {text: 'Product status', dataField: 'productstatus', editable: false}
   ];
 
   public sourceAdapter = new jqx.dataAdapter(this.productSource, {autoBind: true});
@@ -44,8 +46,18 @@ export abstract class IProductTableInterface implements AfterViewInit{
   {'columnsResize': true},
   {'pagerButtonsCount': 10}*/
 
-  constructor(public productService: ProductService, public themeProvider: ThemeproviderService) {
-    this.productService.getVoorraadObserable().subscribe(voorraad => {
+  constructor() {
+
+  }
+
+  setVoorraadData(productService: ProductService) {
+    this.productSource.dataFields[0] = null;
+    this.productSource.dataFields[3] = null;
+    this.productSource.dataFields.push({name: 'voorraad', type: 'number'});
+    this.columns[0] = null;
+    this.columns[3] = null;
+    this.columns.push({text: 'Voorraad', dataField: 'voorraad', editable: false});
+    productService.getVoorraadObserable().subscribe(voorraad => {
       const voorraadJson = JSON.parse(JSON.stringify(voorraad));
       const nieuweVoorraad = Object.keys(voorraadJson).map(function(k) {
         return voorraadJson[k];

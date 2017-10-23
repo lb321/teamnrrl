@@ -1,3 +1,7 @@
 <div>
-  <jqxDataTable #leningtable [theme]="themeProvider.selectedTheme" [source]="adapter" [columns]="columns" [auto-create]="false"></jqxDataTable>
+  <jqxDataTable #leningtable [theme]="themeProvider.selectedTheme" [selectionMode]="'singleRow'" [source]="adapter" [columns]="columns"
+                (onRowDoubleClick)="showLeningDetails()" (onRowSelect)="selectRow()" (onRowUnselect)="unSelectRow()"
+                [auto-create]="false">
+  </jqxDataTable>
+  <jqxButton *ngIf="this.geselecteerdeLening != 0">Details</jqxButton>
 </div>

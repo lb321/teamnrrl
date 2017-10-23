@@ -3,12 +3,14 @@ import {jqxDataTableComponent} from 'jqwidgets-framework/jqwidgets-ts/angular_jq
 import DataTableColumns = jqwidgets.DataTableColumns;
 import {ThemeproviderService} from '../../theme/themeprovider.service';
 import {LeningService} from '../lening.service';
+import {LeningDetailsRoutingService} from "../leningdetails/LeningDetails.RoutingService";
 
 @Component({
   selector: 'LeningenComponent',
   templateUrl: './leningen.component.html'
 })
 export class LeningenComponent implements AfterViewInit {
+  public geselecteerdeLening = 0;
   @ViewChild('leningtable') leningTable: jqxDataTableComponent;
 
   public source =  {
@@ -24,7 +26,7 @@ export class LeningenComponent implements AfterViewInit {
     localData: []
   };
 
-  adapter = new jqx.dataAdapter(this.source, {autoBind: true})
+  adapter = new jqx.dataAdapter(this.source, {autoBind: true});
 
   public columns: DataTableColumns[] = [
     {text: 'Leningnummer', dataField: 'leningnummer', editable: false, width: 115},
@@ -33,6 +35,11 @@ export class LeningenComponent implements AfterViewInit {
     {text: 'Aantal producten', dataField: 'aantalproducten', editable: false, width: 125},
     {text: 'Blok', dataField: 'blok', editable: false, width: 45},
     {text: 'Klascode', dataField: 'klascode', editable: false, width: 90}
+    /*{text: 'Details', dataField: null, columnType: 'none', editable: false, cellsRenderer: function (row, column, value) {
+        // render custom column.
+        return "<jqxButton [auto-create]='true' data-row='" + row + "' class='detailButtons'>Details</jqxButton>";
+      }
+    }*/
   ];
 
   public options =
@@ -47,7 +54,7 @@ export class LeningenComponent implements AfterViewInit {
       pagerButtonsCount: 10
     };
 
-  constructor(public leningService: LeningService, public themeProvider: ThemeproviderService){
+  constructor(public leningService: LeningService, public themeProvider: ThemeproviderService, public routingService: LeningDetailsRoutingService){
     this.leningService.getLeninglistObservable().subscribe(leningen => {
         const leningenjson = JSON.parse(JSON.stringify(leningen));
         const leninglist = Object.keys(leningenjson).map(function(k) {
@@ -62,11 +69,22 @@ export class LeningenComponent implements AfterViewInit {
     });
   }
 
+  selectRow() {
+    this.geselecteerdeLening = this.leningTable.getSelection().pop().leningnummer;
+  }
+
+  unSelectRow() {
+    this.geselecteerdeLening = 0;
+  }
 
   ngAfterViewInit(): void {
     if (this.leningTable) {
       this.leningTable.createComponent(this.options);
       this.leningTable.refresh();
     }
+  }
+
+  showLeningDetails() {
+    this.routingService.showLeningdetailsVanLeningMetNummer(this.geselecteerdeLening);
   }
 }

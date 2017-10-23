@@ -76,6 +76,15 @@ export class ProductService {
     return productenMetNaamEnStatus;
   }
 
+  getProductByID(id: number): ProductDto {
+    if(this.producten) {
+      for (const product of this.producten) {
+        if (product.productId == id) return product;
+      }
+    }
+    return null;
+  }
+
   getProductListObservable() {
     return this.productListObservable;
   }

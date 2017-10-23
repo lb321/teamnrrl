@@ -1,0 +1,33 @@
+<div>
+  <table>
+    <tr>
+      <th>Leningnummer:</th>
+      <td>{{this.leningnummer}}</td>
+    </tr>
+    <tr>
+      <th>Leningstatus:</th>
+      <td>{{lening.leningStatus}}</td>
+    </tr>
+    <tr>
+      <th>Ingediend door:</th>
+      <td>{{lening.user.voornaam}} {{lening.user.achternaam}}</td>
+    </tr>
+    <tr>
+      <th>Studentnummer:</th>
+      <td>{{lening.user.studentnummer}}</td>
+    </tr>
+    <tr>
+      <th>Klascode:</th>
+      <td>{{lening.klascode}}</td>
+    </tr>
+    <tr>
+      <th>Geleend tijdens:</th>
+      <td>Blok {{lening.blok}}</td>
+    </tr>
+  </table>
+  <br>
+  <jqxDataTable #productTable [theme]="themeProvider.selectedTheme" [auto-create]="false" [source]="sourceAdapter" [columns]="columns"></jqxDataTable>
+  <br>
+  <jqxButton *ngIf="showOphaalMomentAangevenBtn()">Ophaalmomenten aangeven</jqxButton>
+  <jqxButton *ngIf="showMarkeerOpgehaaldBtn()">Lening Opgehaald</jqxButton>
+</div>
