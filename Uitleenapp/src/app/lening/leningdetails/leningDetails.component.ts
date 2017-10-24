@@ -15,7 +15,6 @@ import {Router} from "@angular/router";
 export class LeningDetailsComponent extends IProductTableInterface {
   @ViewChild('ophaalComponent') ophaalComponent: OphaalmomentenComponent;
   public lening: LeningDto = null;
-  public geleendeProductIDs: number[] = [];
 
   constructor(public geselecteerdeLeningService: GeselecteerdeLeningService, public themeProvider: ThemeproviderService) {
     super();

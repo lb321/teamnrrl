@@ -49,14 +49,21 @@ export class ProductService {
   }
 
   setProductStatus(productId: number, status: ProductStatus) {
-    this.productlist.forEach(producten => {
-      producten.forEach(product => {
-        if(product.productid == productId) {
-          this.afDatabase.database.ref('/producten/' + product.$key).update({
-            'productstatus': ProductStatus.getStringValue(status)
-          });
-        }
+    this.afDatabase.database.ref('/producten').once('value', snap => {
+      const snapshot = snap.val();
+      const productenlijst = Object.keys(snapshot).map(function(key) {
+        let arr = snapshot[key];
+        arr['key'] = key;
+        return arr;
       });
+      for(let product of productenlijst){
+        if(product.productid == productId) {
+          this.afDatabase.database.ref('/producten/' + product.key).update({
+            'productstatus': ProductStatus.getStringValue(status)
+          })
+          return;
+        }
+      }
     });
   }
 

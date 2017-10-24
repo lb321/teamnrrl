@@ -11,3 +11,7 @@
   font-weight: bold;
   border: 1px solid;
 }
+
+::selection {
+  background: #f90081 !important;
+}

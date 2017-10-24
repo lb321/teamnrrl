@@ -10,7 +10,6 @@ import {OphaalmomentDto} from "./ophaalmoment/ophaalmoment.dto";
 export class GeselecteerdeLeningService {
   private geselecteerdeLening: LeningDto;
   private geselecteerdeLeningObservable = new ReplaySubject<LeningDto>(1);
-  public geleendeProductIDs: number[] = [];
 
   constructor(private leningService: LeningService, public userService: UserService, public productService: ProductService){
 

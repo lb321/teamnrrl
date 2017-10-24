@@ -2,12 +2,13 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {Injectable} from '@angular/core';
 import {UserDto} from './user.dto';
 import {UserService} from "./user.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthenticationService {
   private loggedInUser: UserDto = null;
 
-  constructor(private firebaseAuth: AngularFireAuth, public userService: UserService) {
+  constructor(private firebaseAuth: AngularFireAuth, public userService: UserService, public router: Router) {
     this.firebaseAuth.auth.setPersistence('local'); //wanneer pagina word gesloten word nog onthouden of ingelogd of niet
     this.firebaseAuth.authState.subscribe(
       (auth) => {
@@ -55,6 +56,7 @@ export class AuthenticationService {
 
   logout(): void {
     this.firebaseAuth.auth.signOut();
+    this.router.navigate(['/']);
   }
 
 }

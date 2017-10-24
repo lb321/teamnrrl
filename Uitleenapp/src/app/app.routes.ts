@@ -19,7 +19,7 @@ export const appRoutes: Routes = [
   { path: 'producten/toevoegen', component: ProductToevoegenComponent, canActivate: [AuthguardService]},
   { path: 'leningen', component: LeningenComponent, canActivate: [AuthguardService]},
   { path: 'leningen/details', component: LeningDetailsComponent, canActivate: [AuthguardService]},
-  { path: 'leningen/ophaalmomentaangeven', component: OphaalmomentAangevenComponent, canActivate: [AuthguardService]}
+  { path: 'leningen/details/ophaalmomentaangeven', component: OphaalmomentAangevenComponent, canActivate: [AuthguardService]}
 ];
 
 export const appRoutingProviders: any[] = [

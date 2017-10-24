@@ -36,6 +36,7 @@ import {OphaalmomentAangevenComponent} from './lening/ophaalmoment/ophaalmomenta
 import {appRoutingProviders, Routing} from './app.routes';
 import {OphaalmomentenComponent} from "./lening/ophaalmoment/ophaalmomenten/ophaalmomenten.component";
 import {GeselecteerdeLeningService} from "./lening/geselecteerdeLening.service";
+import {BreadcrumpComponent} from "./menu/breadcrump/breadcrump.component";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyD7xwN0D0x1AaMqzO8sYrdGrpTPc-wcK8M',
@@ -50,6 +51,7 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     MenuComponent,
+    BreadcrumpComponent,
     ProductToevoegenComponent,
     LoginComponent,
     IngelogdComponent,

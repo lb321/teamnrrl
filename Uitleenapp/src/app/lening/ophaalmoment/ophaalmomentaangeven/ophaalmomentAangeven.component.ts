@@ -2,10 +2,13 @@ import {ThemeproviderService} from '../../../theme/themeprovider.service';
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import { jqxValidatorComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxvalidator';
 import { jqxDateTimeInputComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatetimeinput';
-import {LeningDto} from "../../lening.dto";
-import {OphaalmomentDto} from "../ophaalmoment.dto";
+import {LeningDto} from '../../lening.dto';
+import {OphaalmomentDto} from '../ophaalmoment.dto';
 import {LeningService} from "../../lening.service";
 import {GeselecteerdeLeningService} from "../../geselecteerdeLening.service";
+import {LeningStatus} from "../../leningstatus.enum";
+import {ProductService} from "../../../product/product.service";
+import {ProductStatus} from '../../../product/productstatus.enum';
 
 @Component({
   selector: 'OphaalmomentAangevenComponent',
@@ -37,7 +40,7 @@ export class OphaalmomentAangevenComponent implements  AfterViewInit {
     }
   ];
 
-  constructor(public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public leningService: LeningService) {
+  constructor(public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public leningService: LeningService, public productService: ProductService) {
     this.geselecteerdeLeningService.getGeselecteerdeLeningObservable().subscribe(lening => {
       this.lening = lening;
     });
@@ -53,8 +56,17 @@ export class OphaalmomentAangevenComponent implements  AfterViewInit {
         this.lening.ophaalmomenten.push(
           new OphaalmomentDto(this.vanInput.value(), this.totInput.value())
         );
-        this.leningService.setOphaalmomenten(this.lening);
-        this.geselecteerdeLeningService.selecteerLening(this.lening);
+        const nieuwelening = this.lening;
+        this.leningService.setOphaalmomenten(nieuwelening);
+        if(LeningStatus.equals(nieuwelening.leningstatus, LeningStatus.Ingediend)) {
+          this.leningService.setLeningStatus(nieuwelening.leningnummer, LeningStatus.Klaargelegd);
+          for(const product of nieuwelening.producten){
+            this.productService.setProductStatus(product.productId, ProductStatus.Klaargelegd);
+            product.productstatus = ProductStatus.Klaargelegd;
+          }
+          nieuwelening.leningstatus = LeningStatus.Klaargelegd;
+        }
+        this.geselecteerdeLeningService.selecteerLening(nieuwelening);
       });
     }
   }

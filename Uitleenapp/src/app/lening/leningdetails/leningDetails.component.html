@@ -1,5 +1,5 @@
 <div>
-  <table>
+  <table *ngIf="this.lening" >
     <tr>
       <th>Leningnummer:</th>
       <td>{{lening.leningnummer}}</td>
@@ -38,11 +38,12 @@
     </div>
     <div style="display: block; width 100%;"> <!-- Ophaal momenten -->
       <OphaalmomentenComponent #ophaalComponent></OphaalmomentenComponent>
-      <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showOphaalMomentAangevenBtn()" routerLink="/leningen/ophaalmomentaangeven">Ophaalmomenten toevoegen</jqxButton>
+      <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showOphaalMomentAangevenBtn()" routerLink="/leningen/details/ophaalmomentaangeven">Ophaalmomenten toevoegen</jqxButton>
     </div>
   </jqxTabs>
 
-
-  <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showMarkeerOpgehaaldBtn()">Lening Opgehaald</jqxButton>
-  <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showLeningRetournerenAdministrerenBtn()">Lening retourneren administreren</jqxButton>
+  <div style="margin-top: 20px;">
+    <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showMarkeerOpgehaaldBtn()">Lening Opgehaald</jqxButton>
+    <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showLeningRetournerenAdministrerenBtn()">Lening retourneren administreren</jqxButton>
+  </div>
 </div>
