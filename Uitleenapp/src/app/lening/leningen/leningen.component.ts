@@ -3,7 +3,8 @@ import {jqxDataTableComponent} from 'jqwidgets-framework/jqwidgets-ts/angular_jq
 import DataTableColumns = jqwidgets.DataTableColumns;
 import {ThemeproviderService} from '../../theme/themeprovider.service';
 import {LeningService} from '../lening.service';
-import {LeningDetailsRoutingService} from "../leningdetails/LeningDetails.RoutingService";
+import {GeselecteerdeLeningService} from "../geselecteerdeLening.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'LeningenComponent',
@@ -54,7 +55,7 @@ export class LeningenComponent implements AfterViewInit {
       pagerButtonsCount: 10
     };
 
-  constructor(public leningService: LeningService, public themeProvider: ThemeproviderService, public routingService: LeningDetailsRoutingService){
+  constructor(public leningService: LeningService, public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public router: Router){
     this.leningService.getLeninglistObservable().subscribe(leningen => {
         const leningenjson = JSON.parse(JSON.stringify(leningen));
         const leninglist = Object.keys(leningenjson).map(function(k) {
@@ -85,6 +86,7 @@ export class LeningenComponent implements AfterViewInit {
   }
 
   showLeningDetails() {
-    this.routingService.showLeningdetailsVanLeningMetNummer(this.geselecteerdeLening);
+    this.geselecteerdeLeningService.selecteerLeningMetNummer(this.geselecteerdeLening);
+    this.router.navigate(['/leningen/details']);
   }
 }

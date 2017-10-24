@@ -3,6 +3,9 @@ import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database
 import {LeningDto} from "./lening.dto";
 import {LeningStatus} from "./leningstatus.enum";
 import {ReplaySubject} from "rxjs/ReplaySubject";
+import * as firebase from "firebase";
+import Reference = firebase.database.Reference;
+import {OphaalmomentDto} from "./ophaalmoment/ophaalmoment.dto";
 
 @Injectable()
 export class LeningService {
@@ -29,6 +32,9 @@ export class LeningService {
       'leningstatus': LeningStatus.getStringValue(LeningStatus.Ingediend),
       'uitgeleendeProducten': [
 
+      ],
+      'ophaalmomenten': [
+
       ]
     };
     for(const product of lening.producten){
@@ -40,4 +46,22 @@ export class LeningService {
   getLeninglistObservable() {
     return this.leninglistObservable;
   }
+
+  setOphaalmomenten(lening: LeningDto) {
+    this.leninglist.forEach(leningen => {
+      leningen.forEach(lening1 => {
+        if(lening.leningnummer == lening1.leningnummer){
+          let ophaalmomenten = [];
+          for(const ophaalmoment of lening.ophaalmomenten){
+            if((typeof ophaalmoment.begintijd).toString().toLocaleLowerCase() == 'date' ) ophaalmomenten.push({'begintijd': ophaalmoment.begintijd.getTime(), 'eindtijd': ophaalmoment.eindtijd.getTime()});
+            else ophaalmomenten.push(ophaalmoment);
+          }
+          this.afDatabase.database.ref('/leningen/' + lening1.$key + '/ophaalmoment').set(
+            ophaalmomenten
+          );
+        }
+      });
+    });
+  }
+
 }

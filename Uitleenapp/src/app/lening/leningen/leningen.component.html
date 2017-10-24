@@ -3,5 +3,5 @@
                 (onRowDoubleClick)="showLeningDetails()" (onRowSelect)="selectRow()" (onRowUnselect)="unSelectRow()"
                 [auto-create]="false">
   </jqxDataTable>
-  <jqxButton *ngIf="this.geselecteerdeLening != 0">Details</jqxButton>
+  <jqxButton *ngIf="this.geselecteerdeLening != 0" (onClick)="showLeningDetails()" [theme]="themeProvider.selectedTheme">Details</jqxButton>
 </div>

@@ -19,6 +19,8 @@ import { jqxPanelComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqx
 import { jqxMenuComponent  } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxmenu';
 import { jqxDataTableComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable';
 import { jqxValidatorComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxvalidator';
+import { jqxDateTimeInputComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatetimeinput';
+import { jqxTabsComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxtabs';
 import {ThemeproviderService} from './theme/themeprovider.service';
 import {MenuComponent} from './menu/menu.component';
 import {HomeComponent} from './home/home.component';
@@ -29,8 +31,11 @@ import {LeningIndienenComponent} from './lening/leningindienen/leningIndienen.co
 import {ProductToevoegenComponent} from './product/productToevoegen/productToevoegen.component';
 import {LeningenComponent} from './lening/leningen/leningen.component';
 import {LeningDetailsComponent} from './lening/leningdetails/leningDetails.component';
+import {UserService} from './authentication/user.service';
+import {OphaalmomentAangevenComponent} from './lening/ophaalmoment/ophaalmomentaangeven/ophaalmomentAangeven.component';
 import {appRoutingProviders, Routing} from './app.routes';
-import {UserService} from "./authentication/user.service";
+import {OphaalmomentenComponent} from "./lening/ophaalmoment/ophaalmomenten/ophaalmomenten.component";
+import {GeselecteerdeLeningService} from "./lening/geselecteerdeLening.service";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyD7xwN0D0x1AaMqzO8sYrdGrpTPc-wcK8M',
@@ -44,6 +49,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
+    ProductToevoegenComponent,
     LoginComponent,
     IngelogdComponent,
     ProductenComponent,
@@ -51,6 +58,8 @@ export const firebaseConfig = {
     LeningIndienenComponent,
     LeningenComponent,
     LeningDetailsComponent,
+    OphaalmomentenComponent,
+    OphaalmomentAangevenComponent,
     jqxButtonComponent,
     jqxInputComponent,
     jqxPasswordInputComponent,
@@ -60,8 +69,8 @@ export const firebaseConfig = {
     jqxPanelComponent,
     jqxDataTableComponent,
     jqxValidatorComponent,
-    MenuComponent,
-    ProductToevoegenComponent
+    jqxDateTimeInputComponent,
+    jqxTabsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +87,7 @@ export const firebaseConfig = {
     ThemeproviderService,
     ProductService,
     LeningService,
+    GeselecteerdeLeningService,
     appRoutingProviders
   ],
   bootstrap: [AppComponent]

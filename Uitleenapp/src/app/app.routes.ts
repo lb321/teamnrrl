@@ -8,7 +8,7 @@ import {ProductToevoegenComponent} from './product/productToevoegen/productToevo
 import {LeningenComponent} from './lening/leningen/leningen.component';
 import {LeningDetailsComponent} from './lening/leningdetails/leningDetails.component';
 import {AuthguardService} from './authentication/authgaurds/authguard.service';
-import {LeningDetailsRoutingService} from "./lening/leningdetails/LeningDetails.RoutingService";
+import {OphaalmomentAangevenComponent} from './lening/ophaalmoment/ophaalmomentaangeven/ophaalmomentAangeven.component';
 
 export const appRoutes: Routes = [
   { path: 'loguit', component: LoginComponent},
@@ -18,11 +18,12 @@ export const appRoutes: Routes = [
   { path: 'leningen/indienen', component: LeningIndienenComponent, canActivate: [AuthguardService]},
   { path: 'producten/toevoegen', component: ProductToevoegenComponent, canActivate: [AuthguardService]},
   { path: 'leningen', component: LeningenComponent, canActivate: [AuthguardService]},
-  { path: 'leningen/details', component: LeningDetailsComponent, canActivate: [AuthguardService]}
+  { path: 'leningen/details', component: LeningDetailsComponent, canActivate: [AuthguardService]},
+  { path: 'leningen/ophaalmomentaangeven', component: OphaalmomentAangevenComponent, canActivate: [AuthguardService]}
 ];
 
 export const appRoutingProviders: any[] = [
-  LeningDetailsRoutingService
+
 ];
 
 export const Routing = RouterModule.forRoot(appRoutes);

@@ -1,56 +1,59 @@
-import {Component} from "@angular/core";
-import {LeningDetailsRoutingService} from './LeningDetails.RoutingService';
-import {LeningService} from "../lening.service";
+import {Component, ViewChild} from "@angular/core";
 import {LeningDto} from "../lening.dto";
-import {UserService} from "../../authentication/user.service";
 import {ProductService} from "../../product/product.service";
 import {IProductTableInterface} from "../../product/IProductTable.interface";
 import {ThemeproviderService} from "../../theme/themeprovider.service";
 import {LeningStatus} from "../leningstatus.enum";
+import {GeselecteerdeLeningService} from "../geselecteerdeLening.service";
+import {OphaalmomentenComponent} from "../ophaalmoment/ophaalmomenten/ophaalmomenten.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'LeningDetailsComponent',
   templateUrl: './leningDetails.component.html'
 })
-export class LeningDetailsComponent extends IProductTableInterface{
-  public leningnummer: number;
-  public lening: LeningDto;
+export class LeningDetailsComponent extends IProductTableInterface {
+  @ViewChild('ophaalComponent') ophaalComponent: OphaalmomentenComponent;
+  public lening: LeningDto = null;
   public geleendeProductIDs: number[] = [];
 
-  constructor(public routingService: LeningDetailsRoutingService, public leningService: LeningService, public userService: UserService, public productService: ProductService, public themeProvider: ThemeproviderService) {
+  constructor(public geselecteerdeLeningService: GeselecteerdeLeningService, public themeProvider: ThemeproviderService) {
     super();
-    this.leningnummer = routingService.leningNummer;
+    this.lening = this.geselecteerdeLeningService.getGeselecteerdeLening();
+    this.options.editable = false;
+    this.options.filterable = false;
 
-    // lening object vullen
-    this.leningService.getLeninglistObservable().subscribe(leninglist => {
-      JSON.parse(JSON.stringify(leninglist)).forEach(lening => {
-        if(lening.leningnummer == this.leningnummer) {
-          this.lening = new LeningDto(userService.getUserByStudentnummer(lening.studentnummer), lening.klascode, lening.blok, [], lening.leningstatus);
-          for(const product of lening.uitgeleendeProducten){
-            this.geleendeProductIDs.push(product.productid);
-          }
-          return;
-        }
-      });
-    });
-
-    // geleendeproducten variabele van lening object vullen
-    this.productService.getProductListObservable().subscribe( productlist => {
-      this.lening.producten = [];
-      for(const productid of this.geleendeProductIDs) {
-        this.lening.producten.push(this.productService.getProductByID(productid));
-      }
+    this.geselecteerdeLeningService.getGeselecteerdeLeningObservable().subscribe(lening => {
+      this.lening = lening;
       this.productSource['localData'] = this.lening.producten;
       this.productSource['localdata'] = this.lening.producten;
       if (this.productTable) this.productTable.updateBoundData();
     });
   }
 
+  initWidgets = (tab) => {
+    switch (tab) {
+      case 0:
+        break;
+      case 1:
+        this.initOphaalmomentenComponent();
+        break;
+    }
+  };
+
+  initOphaalmomentenComponent() {
+    this.ophaalComponent.createTable();
+  }
+
   showOphaalMomentAangevenBtn(): boolean {
-    return LeningStatus.equals(this.lening.leningStatus, LeningStatus.Ingediend);
+    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Ingediend) || LeningStatus.equals(this.lening.leningstatus, LeningStatus.Klaargelegd);
   }
 
   showMarkeerOpgehaaldBtn(): boolean {
-    return LeningStatus.equals(this.lening.leningStatus, LeningStatus.Klaargelegd);
+    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Klaargelegd);
+  }
+
+  showLeningRetournerenAdministrerenBtn(): boolean {
+    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Producten_uitgeleend);
   }
 }

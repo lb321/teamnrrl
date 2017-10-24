@@ -1,6 +1,5 @@
 import {ViewChild, AfterViewInit} from "@angular/core";
 import {jqxDataTableComponent} from "jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable";
-import {ThemeproviderService} from "../theme/themeprovider.service";
 import {ProductService} from "./product.service";
 import DataTableColumns = jqwidgets.DataTableColumns;
 

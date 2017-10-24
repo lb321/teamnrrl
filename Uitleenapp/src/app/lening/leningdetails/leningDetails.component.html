@@ -2,11 +2,11 @@
   <table>
     <tr>
       <th>Leningnummer:</th>
-      <td>{{this.leningnummer}}</td>
+      <td>{{lening.leningnummer}}</td>
     </tr>
     <tr>
       <th>Leningstatus:</th>
-      <td>{{lening.leningStatus}}</td>
+      <td>{{lening.leningstatus}}</td>
     </tr>
     <tr>
       <th>Ingediend door:</th>
@@ -26,8 +26,23 @@
     </tr>
   </table>
   <br>
-  <jqxDataTable #productTable [theme]="themeProvider.selectedTheme" [auto-create]="false" [source]="sourceAdapter" [columns]="columns"></jqxDataTable>
-  <br>
-  <jqxButton *ngIf="showOphaalMomentAangevenBtn()">Ophaalmomenten aangeven</jqxButton>
-  <jqxButton *ngIf="showMarkeerOpgehaaldBtn()">Lening Opgehaald</jqxButton>
+  <jqxTabs style="display: inline-block;" [width]="582" [theme]="themeProvider.selectedTheme" [initTabContent]="initWidgets">
+    <ul style="margin-left: 134px;">
+        <li>Geleende producten</li>
+        <li>Ophaal momenten</li>
+    </ul>
+    <div style="display: block; width 100%;"> <!-- Geleende producten -->
+      <div style="display: table; margin: 0 auto;">
+        <jqxDataTable #productTable [theme]="themeProvider.selectedTheme" [auto-create]="false" [source]="sourceAdapter" [columns]="columns"></jqxDataTable>
+      </div>
+    </div>
+    <div style="display: block; width 100%;"> <!-- Ophaal momenten -->
+      <OphaalmomentenComponent #ophaalComponent></OphaalmomentenComponent>
+      <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showOphaalMomentAangevenBtn()" routerLink="/leningen/ophaalmomentaangeven">Ophaalmomenten toevoegen</jqxButton>
+    </div>
+  </jqxTabs>
+
+
+  <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showMarkeerOpgehaaldBtn()">Lening Opgehaald</jqxButton>
+  <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showLeningRetournerenAdministrerenBtn()">Lening retourneren administreren</jqxButton>
 </div>
