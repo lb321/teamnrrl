@@ -1,5 +1,8 @@
+import {ReplaySubject} from "rxjs/ReplaySubject";
+
 export class ThemeproviderService {
   public selectedTheme: string = 'Base';
+  public selectedThemeObservable = new ReplaySubject<string>(1);
   private themes: string[] = [
     'Base',
     'Flat',
@@ -25,6 +28,7 @@ export class ThemeproviderService {
 
   constructor() {
     this.selectedTheme = this.themes[0];
+    this.selectedThemeObservable.next(this.selectedTheme);
   }
 
   getSelectedTheme(): string {
@@ -40,7 +44,11 @@ export class ThemeproviderService {
     chosenTheme = chosenTheme.toLocaleLowerCase();
     chosenTheme = chosenTheme.replace(' ', '');
     this.selectedTheme = chosenTheme;
-    console.log('change theme to: ' + chosenTheme);
+    this.selectedThemeObservable.next(this.selectedTheme);
     //MainPanelProviderService.refreshMainPanel();
+  }
+
+  getSelectedThemeObservable(){
+    return this.selectedThemeObservable;
   }
 }

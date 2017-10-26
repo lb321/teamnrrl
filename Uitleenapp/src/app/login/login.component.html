@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="this.foutmelding.length > 1 "class="alert-danger" style="display: inline-block;">
+  <div *ngIf="this.foutmelding.length > 1 "class="jqx-grid-validation" style="border-radius: 5px; display: inline-block;">
     {{this.foutmelding}}
   </div>
   <h2>Inlognaam:</h2><jqxInput [(ngModel)]="loginnaam" type="text" [theme]="themeproviderService.selectedTheme"></jqxInput>
