@@ -1,0 +1,30 @@
+<style>
+  ul.breadcrumb {
+    padding-left: 10px;
+    list-style: none;
+    background-color: transparent;
+    margin: 2px;
+  }
+  ul.breadcrumb li {
+    cursor: pointer;
+    display: inline;
+    font-size: 13px;
+  }
+  ul.breadcrumb li+li:before {
+    padding: 6px;
+    content: "/\00a0";
+  }
+  ul.breadcrumb li a {
+    text-decoration: none;
+  }
+  ul.breadcrumb li a:hover, ul.breadcrumb li a:active{
+    text-decoration: underline;
+  }
+</style>
+<div ngClass="jqx-menu jqx-widget {{this.jqxRcAllClass}} {{this.jqxWidgetHeaderClass}}" style="height: 25px; width: 580px; margin-bottom: 20px;">
+  <ul #breadcrump  class="breadcrumb ">
+    <li style="font-size: 14px; font-weight: bold;"><a>Home</a></li>
+    <li *ngFor="let item of breadcrumpItems" routerLink="{{item.url}}"><a>{{item.text}}</a></li>
+  </ul>
+</div>
+
