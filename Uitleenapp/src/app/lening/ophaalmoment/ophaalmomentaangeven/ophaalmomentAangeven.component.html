@@ -1,0 +1,27 @@
+<div>
+  Geef aan tussen welke tijden de student zijn lening kan komen ophalen.
+  <jqxValidator #myValidator [rules]="validationRules" [hintType]="'label'" [animationDuration]="0">
+    <form id='form' action="">
+      <table>
+        <tr>
+          <th>Begintijd</th>
+          <td>
+            <jqxDateTimeInput [theme]="themeProvider.selectedTheme" #vanInput id='vanInput' class='vanInput' formatString="dd/MM/yyyy HH:mm" [showTimeButton]="true" [width]="250" [theme]="themeProvider.selectedTheme"></jqxDateTimeInput >
+          </td>
+        </tr>
+        <tr>
+          <th>Eindtijd</th>
+          <td>
+            <jqxDateTimeInput [theme]="themeProvider.selectedTheme" #totInput id="totInput"  class='totInput' formatString="dd/MM/yyyy HH:mm" [showTimeButton]="true" [width]="250"  [theme]="themeProvider.selectedTheme"></jqxDateTimeInput >
+          </td>
+        </tr>
+      </table>
+      <jqxButton (onClick)="slaOphaalMomentOp()" [theme]="themeProvider.selectedTheme">Ophaalmoment toevoegen</jqxButton>
+    </form>
+  </jqxValidator>
+</div>
+<br>
+<div>
+  Momenten waarop de student zijn leningen kan komen ophalen:
+  <OphaalmomentenComponent></OphaalmomentenComponent>
+</div>

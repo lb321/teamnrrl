@@ -1,6 +1,10 @@
 hier komt de documentatie.
 test voor developer
+<<<<<<< HEAD
 opnieuw test
 Test
 RoyTest
 Test3.0 nieuwe update
+=======
+rick zn test
+>>>>>>> developer-branch
