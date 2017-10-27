@@ -37,7 +37,7 @@ export class LeningRetournerenAdministrerenComponent extends IProductTableInterf
   retournerenadministreren():void{
     this.leningservice.setLeningStatus(this.lening.leningnummer, LeningStatus.Afgerond);
     this.lening.leningstatus = LeningStatus.Afgerond;
-    for(const row of this.productTable.getrows()){
+    for(const row of ((this.productTable) as any).getrows()){
       if(row.defect){
         this.productservice.setProductStatus(row.productId, ProductStatus.Defect);
         //this.lening.getGeleendProductByProductId(row.productId).productstatus = ProductStatus.Defect;
