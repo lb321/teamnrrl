@@ -1,5 +1,5 @@
 <div>
-  <table *ngIf="this.lening" >
+  <table *ngIf="this.lening && this.lening.user" >
     <tr>
       <th>Leningnummer:</th>
       <td>{{lening.leningnummer}}</td>
@@ -43,7 +43,7 @@
   </jqxTabs>
 
   <div style="margin-top: 20px;">
-    <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showMarkeerOpgehaaldBtn()">Lening Opgehaald</jqxButton>
+    <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showMarkeerOpgehaaldBtn()" (onClick)="leningOpgehaaldAdministreren()">Lening Opgehaald</jqxButton>
     <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showLeningRetournerenAdministrerenBtn()">Lening retourneren administreren</jqxButton>
   </div>
 </div>
