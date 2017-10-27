@@ -21,6 +21,7 @@ import { jqxDataTableComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_
 import { jqxValidatorComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxvalidator';
 import { jqxDateTimeInputComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatetimeinput';
 import { jqxTabsComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxtabs';
+import { jqxGridComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxgrid';
 import {ThemeproviderService} from './theme/themeprovider.service';
 import {MenuComponent} from './menu/menu.component';
 import {HomeComponent} from './home/home.component';
@@ -37,6 +38,7 @@ import {appRoutingProviders, Routing} from './app.routes';
 import {OphaalmomentenComponent} from "./lening/ophaalmoment/ophaalmomenten/ophaalmomenten.component";
 import {GeselecteerdeLeningService} from "./lening/geselecteerdeLening.service";
 import {BreadcrumpComponent} from "./menu/breadcrump/breadcrump.component";
+import {LeningRetournerenAdministrerenComponent} from "./lening/leningretourneren/leningretournerenadministreren.component";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyD7xwN0D0x1AaMqzO8sYrdGrpTPc-wcK8M',
@@ -62,6 +64,7 @@ export const firebaseConfig = {
     LeningDetailsComponent,
     OphaalmomentenComponent,
     OphaalmomentAangevenComponent,
+    LeningRetournerenAdministrerenComponent,
     jqxButtonComponent,
     jqxInputComponent,
     jqxPasswordInputComponent,
@@ -72,7 +75,8 @@ export const firebaseConfig = {
     jqxDataTableComponent,
     jqxValidatorComponent,
     jqxDateTimeInputComponent,
-    jqxTabsComponent
+    jqxTabsComponent,
+    jqxGridComponent
   ],
   imports: [
     BrowserModule,
