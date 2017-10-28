@@ -18,7 +18,7 @@ export class AuthenticationService {
           userService.getUserByKey(auth.displayName).then(user => {
             this.loggedInUser = user;
           });
-          //createUser(new UserDto('Stu', 'dent', 'Student', 'Student', 'student@hu.nl', rollen.Student));
+          //createUser(new UserDto('Stu', 'dent', 'Student', 'Student', 'student@hu.nl', Rollen.Student));
           //this.firebaseAuth.auth.sendPasswordResetEmail("lucas.bos@student.hu.nl");
         }
       }

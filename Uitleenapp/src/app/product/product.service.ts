@@ -25,10 +25,10 @@ export class ProductService {
         this.producten.push(product);
         this.aantalProducten += 1;
         if (ProductStatus.equals(product.productstatus, ProductStatus.Beschikbaar)) {
-          if (this.voorraad[product.productnaam]) {
-            this.voorraad[product.productnaam].voorraad += 1;
+          if (this.voorraad[product.productnaam + ',' + product.productbeschrijving]) {
+            this.voorraad[product.productnaam + ',' + product.productbeschrijving].voorraad += 1;
           } else {
-            this.voorraad[product.productnaam] = {'productnaam': product.productnaam, 'productbeschrijving': product.productbeschrijving, 'voorraad': 1};
+            this.voorraad[product.productnaam + ',' + product.productbeschrijving] = {'productnaam': product.productnaam, 'productbeschrijving': product.productbeschrijving, 'voorraad': 1};
           }
         }
         if(index + 1 == array.length){ //er is door elk element heen geloopt, zend de nieuwe lijsten naar de subscribers.
@@ -60,7 +60,7 @@ export class ProductService {
         if(product.productid == productId) {
           this.afDatabase.database.ref('/producten/' + product.key).update({
             'productstatus': ProductStatus.getStringValue(status)
-          })
+          });
           return;
         }
       }
@@ -96,7 +96,7 @@ export class ProductService {
     return this.productListObservable;
   }
 
-  getVoorraadObserable(){
+  getVoorraadObserable() {
     return this.voorraadObservable;
   }
 }

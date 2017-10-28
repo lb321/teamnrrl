@@ -5,6 +5,8 @@ import {ThemeproviderService} from '../../theme/themeprovider.service';
 import {LeningService} from '../lening.service';
 import {GeselecteerdeLeningService} from "../geselecteerdeLening.service";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../authentication/authentication.service";
+import {Rollen} from "../../authentication/rollen.enum";
 
 @Component({
   selector: 'LeningenComponent',
@@ -55,17 +57,22 @@ export class LeningenComponent implements AfterViewInit {
       pagerButtonsCount: 10
     };
 
-  constructor(public leningService: LeningService, public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public router: Router){
+  constructor(public leningService: LeningService, public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public router: Router, public authService: AuthenticationService){
     this.leningService.getLeninglistObservable().subscribe(leningen => {
         const leningenjson = JSON.parse(JSON.stringify(leningen));
         const leninglist = Object.keys(leningenjson).map(function(k) {
           return leningenjson[k];
         });
+        let leningTableSource = [];
         for (const leningitem of leninglist){
           leningitem['aantalproducten'] = leningitem['uitgeleendeProducten'].length;
+          if(!Rollen.equals(this.authService.getLoggedInUser().rol, Rollen.Student)
+            || leningitem.studentnummer == authService.getLoggedInUser().studentnummer) { //als de beheerder is ingelogd of de student en het studentnr van de lening gelijk is aan die van de ingelogd student
+            leningTableSource.push(leningitem);
+          }
         }
-        this.source['localData'] = leninglist;
-        this.source['localdata'] = leninglist;
+        this.source['localData'] = leningTableSource;
+        this.source['localdata'] = leningTableSource;
         if (this.leningTable) this.leningTable.updateBoundData();
     });
   }
