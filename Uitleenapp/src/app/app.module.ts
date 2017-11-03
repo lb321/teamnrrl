@@ -39,6 +39,7 @@ import {OphaalmomentenComponent} from "./lening/ophaalmoment/ophaalmomenten/opha
 import {GeselecteerdeLeningService} from "./lening/geselecteerdeLening.service";
 import {BreadcrumpComponent} from "./menu/breadcrump/breadcrump.component";
 import {LeningRetournerenAdministrerenComponent} from "./lening/leningretourneren/leningretournerenadministreren.component";
+import {ServiceProvider} from "./service.provider";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyD7xwN0D0x1AaMqzO8sYrdGrpTPc-wcK8M',
@@ -94,6 +95,7 @@ export const firebaseConfig = {
     ProductService,
     LeningService,
     GeselecteerdeLeningService,
+    ServiceProvider,
     appRoutingProviders
   ],
   bootstrap: [AppComponent]

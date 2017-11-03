@@ -9,6 +9,7 @@ import {GeselecteerdeLeningService} from "../../geselecteerdeLening.service";
 import {LeningStatus} from "../../leningstatus.enum";
 import {ProductService} from "../../../product/product.service";
 import {ProductStatus} from '../../../product/productstatus.enum';
+import {ServiceProvider} from "../../../service.provider";
 
 @Component({
   selector: 'OphaalmomentAangevenComponent',
@@ -40,7 +41,7 @@ export class OphaalmomentAangevenComponent implements  AfterViewInit {
     }
   ];
 
-  constructor(public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public leningService: LeningService, public productService: ProductService) {
+  constructor(public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public serviceProvider: ServiceProvider) {
     this.geselecteerdeLeningService.getGeselecteerdeLeningObservable().subscribe(lening => {
       this.lening = lening;
     });
@@ -57,11 +58,11 @@ export class OphaalmomentAangevenComponent implements  AfterViewInit {
           new OphaalmomentDto(this.vanInput.value(), this.totInput.value())
         );
         const nieuwelening = this.lening;
-        this.leningService.setOphaalmomenten(nieuwelening);
+        this.serviceProvider.getLeningService().setOphaalmomenten(nieuwelening);
         if(LeningStatus.equals(nieuwelening.leningstatus, LeningStatus.Ingediend)) {
-          this.leningService.setLeningStatus(nieuwelening.leningnummer, LeningStatus.Klaargelegd);
+          this.serviceProvider.getLeningService().setLeningStatus(nieuwelening.leningnummer, LeningStatus.Klaargelegd);
           for(const product of nieuwelening.producten){
-            this.productService.setProductStatus(product.productId, ProductStatus.Klaargelegd);
+            this.serviceProvider.getProductService().setProductStatus(product.productId, ProductStatus.Klaargelegd);
             product.productstatus = ProductStatus.Klaargelegd;
           }
           nieuwelening.leningstatus = LeningStatus.Klaargelegd;
