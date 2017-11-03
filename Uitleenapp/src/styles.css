@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  padding: 15px;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+}
+
+.active {
+  font-weight: bold;
+  border: 1px solid;
+}
+
+::selection {
+  background: #f90081 !important;
+}

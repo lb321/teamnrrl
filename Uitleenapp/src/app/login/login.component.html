@@ -1,0 +1,8 @@
+<div>
+  <div *ngIf="this.foutmelding.length > 1 "class="jqx-grid-validation" style="border-radius: 5px; display: inline-block;" id="foutmeldingen">
+    {{this.foutmelding}}
+  </div>
+  <h2>Inlognaam:</h2><jqxInput id="loginnaaminp" [(ngModel)]="loginnaam" type="text" [theme]="themeproviderService.selectedTheme"></jqxInput>
+  <h2>Wachtwoord:</h2><jqxPasswordInput id="wachtwoordinp" [(ngModel)]="wachtwoord" type="text" [theme]="themeproviderService.selectedTheme"></jqxPasswordInput>
+  <jqxButton (click)="this.login()" routerLink="/home" [theme]="themeproviderService.selectedTheme" id="loginbtn" >Login</jqxButton>
+</div>

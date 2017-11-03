@@ -1,0 +1,9 @@
+<div>
+  <jqxDataTable #leningtable [theme]="themeProvider.selectedTheme" [selectionMode]="'singleRow'" [source]="adapter" [columns]="columns"
+                (onRowDoubleClick)="showLeningDetails()" (onRowSelect)="selectRow()" (onRowUnselect)="unSelectRow()"
+                [auto-create]="false">
+  </jqxDataTable>
+  <br>
+  <jqxButton *ngIf="this.geselecteerdeLening != 0" (onClick)="showLeningDetails()" [theme]="themeProvider.selectedTheme">Details</jqxButton>
+  <jqxButton *ngIf="showLeningIndienBtn()" routerLink="/leningen/indienen" [theme]="themeProvider.selectedTheme">Lening Indienen</jqxButton>
+</div>

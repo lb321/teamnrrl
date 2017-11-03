@@ -1,0 +1,9 @@
+<div>
+  <div *ngIf="this.errormessage.length > 0" class="jqx-grid-validation" style="border-radius: 5px; display: inline-block;" id="errormessage">
+    {{this.errormessage}}
+  </div>
+  <h2>Productnaam:</h2><jqxInput [(ngModel)]="productnaam" type="text" [theme]="themeproviderService.selectedTheme" minlength="1" ng-maxlength="50" id="productnaam"></jqxInput>
+  <h2>Beschrijving:</h2><jqxInput [(ngModel)]="beschrijving" type="text" [theme]="themeproviderService.selectedTheme" minlength="1" ng-maxlength="200"  id="beschrijving"></jqxInput>
+  <h2>Aantal:</h2><jqxInput [(ngModel)]="aantal" type="number" [theme]="themeproviderService.selectedTheme" minlength="1" ng-maxlength="3" id="aantal"></jqxInput>
+  <jqxButton (click)="this.toevoegen()" [theme]="themeproviderService.selectedTheme" id="toevoegen">Toevoegen</jqxButton>
+</div>

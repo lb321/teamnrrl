@@ -1,0 +1,5 @@
+<h1>Producten:</h1>
+<jqxDataTable #productTable [theme]="themeProvider.selectedTheme" [auto-create]="false" [source]="sourceAdapter" [columns]="columns">
+</jqxDataTable>
+<br>
+<jqxButton *ngIf="showToevoegBtn()" [theme]="themeProvider.selectedTheme" routerLink="/producten/toevoegen">Product Toevoegen</jqxButton>

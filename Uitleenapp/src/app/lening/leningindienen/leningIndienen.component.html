@@ -1,0 +1,17 @@
+<div>
+  <h3 style="margin-bottom: 2px;">Klascode:</h3><jqxInput id="klascodeinp" [theme]="themeProvider.selectedTheme" [minLength]="1" [maxLength]="20" [(ngModel)]="klascode" ></jqxInput>
+  <div *ngIf="this.foutmeldingen.length < 1" style="display: block; margin: 10px;">
+
+  </div>
+  <div *ngIf="this.foutmeldingen.length > 0" style="display: block;" id="foutmeldingen">
+    <ul class="jqx-grid-validation" style="border-radius: 5px; display: inline-block;">
+      <li *ngFor="let melding of this.foutmeldingen">{{melding}}</li>
+    </ul>
+  </div>
+  <div style="display: block;">
+    <div style="display: inline-block;">
+      <jqxDataTable #productTable id="productTable" [source]="sourceAdapter" [columns]="columns" [auto-create]="false" ></jqxDataTable>
+      <jqxButton [theme]="themeProvider.selectedTheme" (onClick)="indienen()" style="float: right; margin-top: 10px;" id="indienenbtn">Indienen</jqxButton>
+    </div>
+  </div>
+</div>
