@@ -9,6 +9,7 @@ import {OphaalmomentenComponent} from "../ophaalmoment/ophaalmomenten/ophaalmome
 import {Router} from "@angular/router";
 import {LeningService} from "../lening.service";
 import {ProductStatus} from "../../product/productstatus.enum";
+import {ServiceProvider} from "../../service.provider";
 
 @Component({
   selector: 'LeningDetailsComponent',
@@ -18,7 +19,7 @@ export class LeningDetailsComponent extends IProductTableInterface {
   @ViewChild('ophaalComponent') ophaalComponent: OphaalmomentenComponent;
   public lening: LeningDto = null;
 
-  constructor(public geselecteerdeLeningService: GeselecteerdeLeningService, public themeProvider: ThemeproviderService, public leningService:LeningService, public productService:ProductService,public router:Router) {
+  constructor(public geselecteerdeLeningService: GeselecteerdeLeningService, public themeProvider: ThemeproviderService, public serviceProvider: ServiceProvider, public router:Router) {
     super();
     this.lening = this.geselecteerdeLeningService.getGeselecteerdeLening();
     this.options.editable = false;
@@ -59,10 +60,10 @@ export class LeningDetailsComponent extends IProductTableInterface {
   }
 
   leningOpgehaaldAdministreren(): void {
-    this.leningService.setLeningStatus(this.lening.leningnummer,LeningStatus.Producten_uitgeleend);
+    this.serviceProvider.getLeningService().setLeningStatus(this.lening.leningnummer,LeningStatus.Producten_uitgeleend);
     this.lening.leningstatus = LeningStatus.Producten_uitgeleend;
       for(let i = 0;i<this.lening.producten.length;i++)  {
-        this.productService.setProductStatus(this.lening.producten[i].productId,ProductStatus.Uitgeleend);
+        this.serviceProvider.getProductService().setProductStatus(this.lening.producten[i].productId,ProductStatus.Uitgeleend);
         this.lening.producten[i].productstatus = ProductStatus.Uitgeleend;
       }
       this.geselecteerdeLeningService.selecteerLening(this.lening);

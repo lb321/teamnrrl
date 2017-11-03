@@ -2,6 +2,7 @@ import {ViewChild, AfterViewInit} from "@angular/core";
 import {jqxDataTableComponent} from "jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable";
 import {ProductService} from "./product.service";
 import DataTableColumns = jqwidgets.DataTableColumns;
+import {ReplaySubject} from "rxjs/ReplaySubject";
 
 export abstract class IProductTableInterface implements AfterViewInit{
   @ViewChild('productTable') productTable: jqxDataTableComponent;
@@ -49,14 +50,14 @@ export abstract class IProductTableInterface implements AfterViewInit{
 
   }
 
-  setVoorraadData(productService: ProductService) {
+  setVoorraadData(voorraadObservable: ReplaySubject<any>) {
     this.productSource.dataFields[0] = null;
     this.productSource.dataFields[3] = null;
     this.productSource.dataFields.push({name: 'voorraad', type: 'number'});
     this.columns[0] = null;
     this.columns[3] = null;
     this.columns.push({text: 'Voorraad', dataField: 'voorraad', editable: false});
-    productService.getVoorraadObserable().subscribe(voorraad => {
+    voorraadObservable.subscribe(voorraad => {
       const voorraadJson = JSON.parse(JSON.stringify(voorraad));
       const nieuweVoorraad = Object.keys(voorraadJson).map(function(k) {
         return voorraadJson[k];

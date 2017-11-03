@@ -1,17 +1,15 @@
 import {Injectable} from "@angular/core";
 import {LeningDto} from "./lening.dto";
-import {LeningService} from "./lening.service";
 import {ReplaySubject} from "rxjs/ReplaySubject";
-import {UserService} from "../authentication/user.service";
-import {ProductService} from "../product/product.service";
 import {OphaalmomentDto} from "./ophaalmoment/ophaalmoment.dto";
+import {ServiceProvider} from "../service.provider";
 
 @Injectable()
 export class GeselecteerdeLeningService {
   private geselecteerdeLening: LeningDto;
   private geselecteerdeLeningObservable = new ReplaySubject<LeningDto>(1);
 
-  constructor(private leningService: LeningService, public userService: UserService, public productService: ProductService){
+  constructor(public serviceProvider: ServiceProvider) {
 
   }
 
@@ -21,13 +19,13 @@ export class GeselecteerdeLeningService {
   }
 
   selecteerLeningMetNummer(leningnummer: number){
-    this.leningService.getLeninglistObservable().subscribe(leninglist => {
+    this.serviceProvider.getLeningService().getLeninglistObservable().subscribe(leninglist => {
       JSON.parse(JSON.stringify(leninglist)).forEach( lening => {
         if(lening.leningnummer == leningnummer) {
-          this.geselecteerdeLening = new LeningDto(this.userService.getUserByStudentnummer(lening.studentnummer), lening.klascode, lening.blok, [], lening.leningstatus);
+          this.geselecteerdeLening = new LeningDto(this.serviceProvider.getUserService().getUserByStudentnummer(lening.studentnummer), lening.klascode, lening.blok, [], lening.leningstatus);
           this.geselecteerdeLening.leningnummer = leningnummer;
           for(const product of lening.uitgeleendeProducten){
-            this.geselecteerdeLening.producten.push(this.productService.getProductByID(product.productid));
+            this.geselecteerdeLening.producten.push(this.serviceProvider.getProductService().getProductByID(product.productid));
           }
           if(lening.ophaalmomenten) {
             for (const ophaalmoment of lening.ophaalmomenten) {

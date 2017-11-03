@@ -1,7 +1,7 @@
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
 import {UserDto} from './user.dto';
 import {Injectable} from '@angular/core';
-import {rollen} from './rollen.enum';
+import {Rollen} from './rollen.enum';
 
 @Injectable()
 export class UserService {
@@ -46,7 +46,7 @@ export class UserService {
       'inlognaam': user.inlognaam,
       'wachtwoord': user.wachtwoord,
       'email': user.email,
-      'rol': rollen[user.rol],
+      'rol': Rollen[user.rol],
       'studentnummer': user.studentnummer
     });
   }
