@@ -3,5 +3,7 @@
                 (onRowDoubleClick)="showLeningDetails()" (onRowSelect)="selectRow()" (onRowUnselect)="unSelectRow()"
                 [auto-create]="false">
   </jqxDataTable>
-  <jqxButton *ngIf="this.geselecteerdeLening != 0" (onClick)="showLeningDetails()" [theme]="themeProvider.selectedTheme" style="margin-top: 20px;">Details</jqxButton>
+  <br>
+  <jqxButton *ngIf="this.geselecteerdeLening != 0" (onClick)="showLeningDetails()" [theme]="themeProvider.selectedTheme">Details</jqxButton>
+  <jqxButton *ngIf="showLeningIndienBtn()" routerLink="/leningen/indienen" [theme]="themeProvider.selectedTheme">Lening Indienen</jqxButton>
 </div>

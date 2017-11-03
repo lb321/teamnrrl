@@ -35,9 +35,8 @@ export class LeningIndienenComponent extends IProductTableInterface {
   indienen() {
     this.foutmeldingen = [];
     this.geleendeProducten = [];
-    if (this.klascode.length < 1) this.foutmeldingen.push('Geef a.u.b. een klascode');
     for (const row of this.productTable.getRows()){
-      if (Number(row.aantal) > Number(row.voorraad)) this.foutmeldingen.push('Er zijn niet genoeg ' + row.productnaam + 's op voorraad.');
+      if (Number(row.aantal) > Number(row.voorraad)) this.foutmeldingen.push('Er is niet genoeg van het volgende product op voorraad: ' + row.productnaam + '.');
       else if (Number(row.aantal) != 0 && this.foutmeldingen.length < 1){
         const producten = this.serviceProvider.getProductService().getProductenByNameAndStatus(row.productnaam, ProductStatus.Beschikbaar);
         for (let i = 0; i < row.aantal; i++) { //voeg de geleende producten toe aan de lijst
@@ -47,9 +46,10 @@ export class LeningIndienenComponent extends IProductTableInterface {
         }
       }
     }
-    if(this.geleendeProducten.length < 1) {
+    if(this.geleendeProducten.length < 1 && this.foutmeldingen.length < 1) {
       this.foutmeldingen.push('Geef aan welke producten u wilt lenen door aantallen te geven.');
     }
+    if (this.klascode.length < 1) this.foutmeldingen.push('Geef a.u.b. een klascode.');
     if (this.foutmeldingen.length < 1) {// geen foutmeldingen, dan lening toevoegen in systeem
       const lening: LeningDto = new LeningDto(this.authService.getLoggedInUser(), this.klascode, 'A', this.geleendeProducten, LeningStatus.Ingediend);
       this.serviceProvider.getLeningService().leningIndienen(lening); //voeg de lening toe

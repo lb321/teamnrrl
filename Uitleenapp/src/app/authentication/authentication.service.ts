@@ -20,6 +20,7 @@ export class AuthenticationService {
         } else {
           userService.getUserByKey(auth.displayName).then(user => {
             this.loggedInUser = user;
+            serviceProvider.setAuthService(this)
             serviceProvider.createLeningService();
             serviceProvider.createProductService();
             serviceProvider.createUserService();
