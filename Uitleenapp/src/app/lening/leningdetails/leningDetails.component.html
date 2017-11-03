@@ -43,6 +43,7 @@
   </jqxTabs>
 
   <div style="margin-top: 20px;">
+    <jqxButton [theme]="themeProvider.selectedTheme" routerLink="/leningen">Terug</jqxButton>
     <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showMarkeerOpgehaaldBtn()" (onClick)="leningOpgehaaldAdministreren()">Lening Opgehaald</jqxButton>
     <jqxButton [theme]="themeProvider.selectedTheme" *ngIf="showLeningRetournerenAdministrerenBtn()" routerLink="/leningen/details/retournerenadministreren">Lening retourneren administreren</jqxButton>
   </div>

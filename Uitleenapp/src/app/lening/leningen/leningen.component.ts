@@ -7,6 +7,7 @@ import {GeselecteerdeLeningService} from "../geselecteerdeLening.service";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../authentication/authentication.service";
 import {Rollen} from "../../authentication/rollen.enum";
+import {ServiceProvider} from "../../service.provider";
 
 @Component({
   selector: 'LeningenComponent',
@@ -57,8 +58,8 @@ export class LeningenComponent implements AfterViewInit {
       pagerButtonsCount: 10
     };
 
-  constructor(public leningService: LeningService, public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public router: Router, public authService: AuthenticationService){
-    this.leningService.getLeninglistObservable().subscribe(leningen => {
+  constructor(public serviceProvider: ServiceProvider, public themeProvider: ThemeproviderService, public geselecteerdeLeningService: GeselecteerdeLeningService, public router: Router){
+    this.serviceProvider.getLeningService().getLeninglistObservable().subscribe(leningen => {
         const leningenjson = JSON.parse(JSON.stringify(leningen));
         const leninglist = Object.keys(leningenjson).map(function(k) {
           return leningenjson[k];
@@ -66,8 +67,8 @@ export class LeningenComponent implements AfterViewInit {
         let leningTableSource = [];
         for (const leningitem of leninglist){
           leningitem['aantalproducten'] = leningitem['uitgeleendeProducten'].length;
-          if(!Rollen.equals(this.authService.getLoggedInUser().rol, Rollen.Student)
-            || leningitem.studentnummer == authService.getLoggedInUser().studentnummer) { //als de beheerder is ingelogd of de student en het studentnr van de lening gelijk is aan die van de ingelogd student
+          if(!Rollen.equals(this.serviceProvider.getAuthService().getLoggedInUser().rol, Rollen.Student)
+            || leningitem.studentnummer == this.serviceProvider.getAuthService().getLoggedInUser().studentnummer) { //als de beheerder is ingelogd of de student en het studentnr van de lening gelijk is aan die van de ingelogd student
             leningTableSource.push(leningitem);
           }
         }
@@ -95,5 +96,9 @@ export class LeningenComponent implements AfterViewInit {
   showLeningDetails() {
     this.geselecteerdeLeningService.selecteerLeningMetNummer(this.geselecteerdeLening);
     this.router.navigate(['/leningen/details']);
+  }
+
+  showLeningIndienBtn(): boolean {
+    return Rollen.equals(this.serviceProvider.getAuthService().getLoggedInUser().rol, Rollen.Student);
   }
 }

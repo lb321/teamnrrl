@@ -1,15 +1,14 @@
 import {Component, ViewChild} from "@angular/core";
 import {LeningDto} from "../lening.dto";
-import {ProductService} from "../../product/product.service";
 import {IProductTableInterface} from "../../product/IProductTable.interface";
 import {ThemeproviderService} from "../../theme/themeprovider.service";
 import {LeningStatus} from "../leningstatus.enum";
 import {GeselecteerdeLeningService} from "../geselecteerdeLening.service";
 import {OphaalmomentenComponent} from "../ophaalmoment/ophaalmomenten/ophaalmomenten.component";
 import {Router} from "@angular/router";
-import {LeningService} from "../lening.service";
 import {ProductStatus} from "../../product/productstatus.enum";
 import {ServiceProvider} from "../../service.provider";
+import {Rollen} from "../../authentication/rollen.enum";
 
 @Component({
   selector: 'LeningDetailsComponent',
@@ -48,15 +47,15 @@ export class LeningDetailsComponent extends IProductTableInterface {
   }
 
   showOphaalMomentAangevenBtn(): boolean {
-    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Ingediend) || LeningStatus.equals(this.lening.leningstatus, LeningStatus.Klaargelegd);
+    return (LeningStatus.equals(this.lening.leningstatus, LeningStatus.Ingediend) || LeningStatus.equals(this.lening.leningstatus, LeningStatus.Klaargelegd)) && Rollen.equals(this.serviceProvider.getAuthService().getLoggedInUser().rol, Rollen.Beheerder);
   }
 
   showMarkeerOpgehaaldBtn(): boolean {
-    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Klaargelegd);
+    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Klaargelegd) && Rollen.equals(this.serviceProvider.getAuthService().getLoggedInUser().rol, Rollen.Beheerder);
   }
 
   showLeningRetournerenAdministrerenBtn(): boolean {
-    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Producten_uitgeleend);
+    return LeningStatus.equals(this.lening.leningstatus, LeningStatus.Producten_uitgeleend) && Rollen.equals(this.serviceProvider.getAuthService().getLoggedInUser().rol, Rollen.Beheerder);
   }
 
   leningOpgehaaldAdministreren(): void {
