@@ -1,9 +1,9 @@
 <div>
-  <div *ngIf="this.errormessage.length > 0" class="alert-danger" style="display: inline-block;">
+  <div *ngIf="this.errormessage.length > 0" class="jqx-grid-validation" style="border-radius: 5px; display: inline-block;" id="errormessage">
     {{this.errormessage}}
   </div>
-  <h2>Productnaam:</h2><jqxInput [(ngModel)]="productnaam" type="text" [theme]="themeproviderService.selectedTheme" minlength="1"></jqxInput>
-  <h2>Beschrijving:</h2><jqxInput [(ngModel)]="beschrijving" type="text" [theme]="themeproviderService.selectedTheme" minlength="1"></jqxInput>
-  <h2>Aantal:</h2><jqxInput [(ngModel)]="aantal" type="number" [theme]="themeproviderService.selectedTheme" minlength="1"></jqxInput>
-  <jqxButton (click)="this.toevoegen()" [theme]="themeproviderService.selectedTheme" >Toevoegen</jqxButton>
+  <h2>Productnaam:</h2><jqxInput [(ngModel)]="productnaam" type="text" [theme]="themeproviderService.selectedTheme" minlength="1" id="productnaam"></jqxInput>
+  <h2>Beschrijving:</h2><jqxInput [(ngModel)]="beschrijving" type="text" [theme]="themeproviderService.selectedTheme" minlength="1" id="beschrijving"></jqxInput>
+  <h2>Aantal:</h2><jqxInput [(ngModel)]="aantal" type="number" [theme]="themeproviderService.selectedTheme" minlength="1" id="aantal"></jqxInput>
+  <jqxButton (click)="this.toevoegen()" [theme]="themeproviderService.selectedTheme" id="toevoegen">Toevoegen</jqxButton>
 </div>

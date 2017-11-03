@@ -31,12 +31,21 @@ export class ProductToevoegenComponent {
 
   private check(): boolean {
     this.errormessage = "";
-    if (this.productnaam.length < 1 || this.beschrijving.length < 1 || this.aantal == 0) {
-      this.errormessage = "Vul alle velden in";
+    if (isNaN(Number(this.aantal))) {
+      this.errormessage = "Vul een getal in bij aantal";
       return false;
     }
-    else {
-      return true;
-    }
+      if (this.productnaam.length < 1 || this.beschrijving.length < 1 || this.aantal == 0) {
+        this.errormessage = "Vul alle velden in";
+        return false;
+      }
+      else if(this.aantal < 0){
+        this.errormessage = "Vul een positief getal in bij aantal";
+        return false;
+      }
+      else {
+        return true;
+      }
+
   }
 }
