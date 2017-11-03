@@ -3,8 +3,10 @@ test voor developer
 <<<<<<< HEAD
 opnieuw test
 Test
+lucas test
 RoyTest
-Test3.0 nieuwe update
+NickTest
+
 =======
 rick zn test
->>>>>>> developer-branch
+>>>>>>> origin/developer-branch

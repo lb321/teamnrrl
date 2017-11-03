@@ -11,7 +11,8 @@ export class ProductService {
   private aantalProducten = 0;
   private voorraad = {};
   private productListObservable = new ReplaySubject(1);
-  private voorraadObservable = new ReplaySubject(1);
+  private voorraadObservable = new ReplaySubject(1); // alle producten
+  private productenNogOpVoorraadObservable = new ReplaySubject(1); //producten die nog op voorraad zijn dus voorraad > 1
 
   constructor(public afDatabase: AngularFireDatabase) {
     this.productlist = this.afDatabase.list('/producten');
@@ -24,16 +25,22 @@ export class ProductService {
         product.productId = item.productid;
         this.producten.push(product);
         this.aantalProducten += 1;
-        if (ProductStatus.equals(product.productstatus, ProductStatus.Beschikbaar)) {
-          if (this.voorraad[product.productnaam]) {
-            this.voorraad[product.productnaam].voorraad += 1;
-          } else {
-            this.voorraad[product.productnaam] = {'productnaam': product.productnaam, 'productbeschrijving': product.productbeschrijving, 'voorraad': 1};
-          }
+        if (this.voorraad[product.productnaam + ',' + product.productbeschrijving]) {
+          if (ProductStatus.equals(product.productstatus, ProductStatus.Beschikbaar))
+            this.voorraad[product.productnaam + ',' + product.productbeschrijving].voorraad += 1;
+        } else {
+          this.voorraad[product.productnaam + ',' + product.productbeschrijving] = {'productnaam': product.productnaam, 'productbeschrijving': product.productbeschrijving, 'voorraad': ProductStatus.equals(product.productstatus, ProductStatus.Beschikbaar) ? 1 : 0};
         }
         if(index + 1 == array.length){ //er is door elk element heen geloopt, zend de nieuwe lijsten naar de subscribers.
           this.productListObservable.next(this.producten);
           this.voorraadObservable.next(this.voorraad);
+          let productenNogOpVoorraad = {};
+          for(const key of Object.keys(this.voorraad)){
+            if(this.voorraad[key].voorraad > 0) {
+              productenNogOpVoorraad[key] = this.voorraad[key];
+            }
+          }
+          this.productenNogOpVoorraadObservable.next(productenNogOpVoorraad);
         }
       });
     });
@@ -60,7 +67,7 @@ export class ProductService {
         if(product.productid == productId) {
           this.afDatabase.database.ref('/producten/' + product.key).update({
             'productstatus': ProductStatus.getStringValue(status)
-          })
+          });
           return;
         }
       }
@@ -92,11 +99,15 @@ export class ProductService {
     return null;
   }
 
+  getProductenNogOpVoorraadObservable() {
+    return this.productenNogOpVoorraadObservable;
+  }
+
   getProductListObservable() {
     return this.productListObservable;
   }
 
-  getVoorraadObserable(){
+  getVoorraadObserable() {
     return this.voorraadObservable;
   }
 }

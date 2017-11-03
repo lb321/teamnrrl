@@ -9,6 +9,7 @@ import {LeningenComponent} from './lening/leningen/leningen.component';
 import {LeningDetailsComponent} from './lening/leningdetails/leningDetails.component';
 import {AuthguardService} from './authentication/authgaurds/authguard.service';
 import {OphaalmomentAangevenComponent} from './lening/ophaalmoment/ophaalmomentaangeven/ophaalmomentAangeven.component';
+import {LeningRetournerenAdministrerenComponent} from "./lening/leningretourneren/leningretournerenadministreren.component";
 
 export const appRoutes: Routes = [
   { path: 'loguit', component: LoginComponent},
@@ -19,7 +20,8 @@ export const appRoutes: Routes = [
   { path: 'producten/toevoegen', component: ProductToevoegenComponent, canActivate: [AuthguardService]},
   { path: 'leningen', component: LeningenComponent, canActivate: [AuthguardService]},
   { path: 'leningen/details', component: LeningDetailsComponent, canActivate: [AuthguardService]},
-  { path: 'leningen/details/ophaalmomentaangeven', component: OphaalmomentAangevenComponent, canActivate: [AuthguardService]}
+  { path: 'leningen/details/ophaalmomentaangeven', component: OphaalmomentAangevenComponent, canActivate: [AuthguardService]},
+  { path: 'leningen/details/retournerenadministreren', component: LeningRetournerenAdministrerenComponent, canActivate: [AuthguardService]}
 ];
 
 export const appRoutingProviders: any[] = [
